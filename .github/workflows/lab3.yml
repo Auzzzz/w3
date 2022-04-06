@@ -21,7 +21,7 @@ jobs:
       - run: npm clean-install
 
       - if: github.ref == 'refs/heads.main'
-      - run: npm pack
+        run: npm pack
 
       - uses: actions/upload-artifact@v3
         with: 
