@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - f/*
   pull_request:
     branches:
       - main
@@ -18,5 +19,12 @@ jobs:
           cache: "npm"
 
       - run: npm clean-install
+
+      - if: github.ref == 'refs/heads.main'
       - run: npm pack
+      
+        uses: actions/upload-artifact@v3
+        with: 
+          name: node-todo-${{github.sha}}
+          path: ./*.tgz
   
